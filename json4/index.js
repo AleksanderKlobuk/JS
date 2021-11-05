@@ -8,16 +8,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     const jsondata_var = await loadData();
     const divContainer = document.getElementById('content');
       var table_data = "";
+      var table_data2 = "";
 
+
+      /*jsondata_var.companies.forEach((itemData2) => {
+        table_data2 += "{" +itemData2 + "}";
+      })*/
       
-      
-      jsondata_var.users.forEach((itemData) => {
+      jsondata_var.companies.forEach((itemData) => {
         table_data += "<tr>";
-        table_data += "<td>" + itemData.uris.company.substr(11) +  "</td>";
-        table_data += "<td>" + itemData.email + "</td>";
+        table_data += "<td>" + itemData.name +  "</td>";
+        table_data += "<td>" +"Tu bym chcial dane z table_data2 wstawic(if uris: z users == uri: z companies) to zaciągnąc user id"+  "</td>";
       })
 
-      var table_data2 = "";
+      
 
       /*users_var.companies.forEach((itemData) => {        
         table_data += "<tr>";
@@ -41,13 +45,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         table_data += "<tr>"+ "<td>" + itemData2.name+ "</td>" +"</tr>";
       }})*/
 
-      
-
-
-
-
       document.getElementById('data').innerHTML = table_data;
       document.getElementById('data2').innerHTML = table_data2;
+      console.log(table_data2)
   } catch (e) {
     console.log('ERROR');
     console.log(e);
