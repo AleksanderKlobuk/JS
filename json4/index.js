@@ -9,45 +9,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     const divContainer = document.getElementById('content');
       var table_data = "";
       var table_data2 = "";
-
-
-      /*jsondata_var.companies.forEach((itemData2) => {
-        table_data2 += "{" +itemData2 + "}";
-      })*/
       
       jsondata_var.companies.forEach((itemData) => {
         table_data += "<tr>";
         table_data += "<td>" + itemData.name +  "</td>";
-        table_data += "<td>" +"Tu bym chcial dane z table_data2 wstawic(if uris: z users == uri: z companies) to zaciągnąc user id"+  "</td>";
+        table_data += "<td>" + "Show Users" +  "</td>";
       })
 
+      var rows = document.getElementsByTagName("td");
+      for (var i = 0; i < rows.length; i++)
+      {
+          rows[i].onclick = function() {
+             console.log(this);
+          };
+      }
       
-
-      /*users_var.companies.forEach((itemData) => {        
-        table_data += "<tr>";
-        table_data += "<td>" + itemData.name +  "</td>"+"</tr>";
-      })
-      users_var.users.forEach((itemData2) => {        
-        table_data2 += "<tr>";
-        table_data2 += "<td>" + itemData2.name +  "</td>"+"</tr>";
-      })*/
-
-
-      /*const a =users_var.companies.name 
-      const b =users_var.users.name 
-      a.forEach((itemData1) => {
-        table_data += "<tr>"+ "<td>" + itemData1+ "</td>" +"</tr>";
-        table_data += "<tr>"+ "<td>" + itemData1+ "</td>" +"</tr>";
-  
-      /*b.forEach((itemData2) => {
-        if (itemData1.name == itemData2.name) {
-        table_data += "<tr>"+ "<td>" + itemData2.name+ "</td>" +"</tr>";
-        table_data += "<tr>"+ "<td>" + itemData2.name+ "</td>" +"</tr>";
-      }})*/
 
       document.getElementById('data').innerHTML = table_data;
       document.getElementById('data2').innerHTML = table_data2;
-      console.log(table_data2)
   } catch (e) {
     console.log('ERROR');
     console.log(e);
@@ -81,3 +60,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 )
 */
+
+
+
+
+      /*id = itemData.uri + onclick = content(this)*/
+
+      /*users_var.companies.forEach((itemData) => {        
+        table_data += "<tr>";
+        table_data += "<td>" + itemData.name +  "</td>"+"</tr>";
+      })
+      users_var.users.forEach((itemData2) => {        
+        table_data2 += "<tr>";
+        table_data2 += "<td>" + itemData2.name +  "</td>"+"</tr>";
+      })*/
+
+
+      /*const a =users_var.companies.name 
+      const b =users_var.users.name 
+      a.forEach((itemData1) => {
+        table_data += "<tr>"+ "<td>" + itemData1+ "</td>" +"</tr>";
+        table_data += "<tr>"+ "<td>" + itemData1+ "</td>" +"</tr>";
+  
+      /*b.forEach((itemData2) => {
+        if (itemData1.name == itemData2.name) {
+        table_data += "<tr>"+ "<td>" + itemData2.name+ "</td>" +"</tr>";
+        table_data += "<tr>"+ "<td>" + itemData2.name+ "</td>" +"</tr>";
+      }})*/
