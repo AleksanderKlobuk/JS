@@ -8,39 +8,58 @@ document.addEventListener("DOMContentLoaded", async () => {
     const jsondata_var = await loadData();
     const divContainer = document.getElementById('content');
       var table_data = "";
-      var table_data2 = "";
+      /*var table_data2 = "";*/ 
       
       jsondata_var.companies.forEach((itemData) => {
         table_data += "<tr>";
         table_data += "<td>" + itemData.name +  "</td>";
-        table_data += "<td>" + "Show Users" +  "</td>";
-      })
+        table_data += '<td onclick="showtable(\''+itemData.uri+'\');">' + "Show Users" +  "</td>"+"</tr>";
+        
+        /*table_data += "</tr>";*/
 
-      var rows = document.getElementsByTagName("td");
-      for (var i = 0; i < rows.length; i++)
-      {
-          rows[i].onclick = function() {
-             console.log(this);
-          };
-      }
-      
+        table_data += '<tr id = "'+itemData.uri+'" style="display: none;" >';
+        table_data +=  get_users_table(jsondata_var,itemData.uri);
+        table_data += "</tr>";
+        
+    })
 
+      /*document.getElementById('data2').innerHTML = table_data2;*/
       document.getElementById('data').innerHTML = table_data;
-      document.getElementById('data2').innerHTML = table_data2;
   } catch (e) {
     console.log('ERROR');
     console.log(e);
   }
   });
 
- /*fetch("https://raw.githubusercontent.com/Solnick/users/master/db.json").then(
+  function get_users_table(json, company_uri)
+  {
+    var user_table = "";
+    json.users.forEach((item_data_user) => {
+        
+      if(company_uri === item_data_user.uris.company)
+      {
+        user_table += "<div>";
+        user_table += "<td>" + item_data_user.name + "</td>";
+        user_table += "<td>" + item_data_user.email + "</td>";
+        user_table += "</div>";
+      } 
+  })
+    return user_table;
+  }
+
+ function showtable(name = "")
+ {
+    document.getElementById(name).style.display = "block";
+  }
+  
+
+    /*fetch("https://raw.githubusercontent.com/Solnick/users/master/db.json").then(
   res => {
     res.json().then(
       dane => {
         console.log(dane.users);
         console.log(dane.companies);
           if (dane.users.length > 0) {
-
           var temp = "";
           dane.users.forEach((itemData) => {
             temp += "<tr>"; 
@@ -51,15 +70,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           dane.companies.forEach((itemData2) => {
             temp += "<td>" + itemData2.name + "</td></tr>";
           });
-
           document.getElementById('data').innerHTML = temp;
-
         }
       }
     ) 
   }
-)
-*/
+)*/
+
 
 
 
